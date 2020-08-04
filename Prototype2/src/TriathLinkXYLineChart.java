@@ -1,3 +1,5 @@
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.image.RescaleOp;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -14,6 +16,7 @@ import org.jfree.chart.axis.DateTickUnit;
 import org.jfree.chart.axis.DateTickUnitType;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.chart.util.RelativeDateFormat;
 import org.jfree.data.time.RegularTimePeriod;
 import org.jfree.data.time.Second;
@@ -35,7 +38,7 @@ public class TriathLinkXYLineChart extends JFrame{
 		super.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		super.setVisible(true);
 
-		
+
 		// Create dataset
 		XYDataset dataset = createDataset(analyzedRecords);
 
@@ -46,37 +49,50 @@ public class TriathLinkXYLineChart extends JFrame{
 				"Speed",
 				dataset,
 				true, true, false);
-		
+
 		Date start = analyzedRecords.get(0).getRecordData().getTimestamp();
-		
-		
+
+
 		RelativeDateFormat format = new RelativeDateFormat(start.getTime());
-		
-		
+
+
 		format.setHourSuffix(":");
 		format.setMinuteSuffix(":");
 		format.setSecondSuffix("");
-		
+
 		DecimalFormat padded = new DecimalFormat("00");
 		format.setHourFormatter(padded);
-        format.setMinuteFormatter(padded);
-        format.setSecondFormatter(padded);
-        
+		format.setMinuteFormatter(padded);
+		format.setSecondFormatter(padded);
+
 		XYPlot plot = chart.getXYPlot();
 		DateAxis xAxis = (DateAxis) plot.getDomainAxis();
+		xAxis.setStandardTickUnits(DateAxis.createStandardDateTickUnits());
 		xAxis.setDateFormatOverride(format);
-        
+
+
+		XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
+		renderer.setSeriesPaint( 0 , Color.BLACK );
+		renderer.setSeriesPaint( 1 , Color.BLUE );
+		renderer.setSeriesPaint( 2 , Color.BLACK );
+		renderer.setSeriesPaint( 3 , Color.YELLOW );
+		renderer.setSeriesPaint( 4 , Color.BLACK );
+		renderer.setSeriesPaint( 5 , Color.RED );
+		renderer.setSeriesPaint( 6 , Color.BLACK );
+		renderer.setDefaultShapesVisible(false);
+		plot.setRenderer( renderer ); 
+
 		// Create Panel
 		ChartPanel panel = new ChartPanel(chart);
 		setContentPane(panel);
-		
+
 	}
 
 	private XYDataset createDataset(ArrayList<AnalyzedRecordData> analyzedRecords) {
-		
-		
+
+
 		XYSeriesCollection dataset = new XYSeriesCollection();
-		
+
 		XYSeries recordSeriesNotStarted = new XYSeries("NotStarted");
 		XYSeries recordSeriesSwimming = new XYSeries("Swimming");
 		XYSeries recordSeriesFirstTransition = new XYSeries("FirstTransition");
@@ -85,10 +101,10 @@ public class TriathLinkXYLineChart extends JFrame{
 		XYSeries recordSeriesRunning = new XYSeries("Running");
 		XYSeries recordSeriesFinished = new XYSeries("Finished");
 
-		
+
 		for (AnalyzedRecordData temp : analyzedRecords){
 			Date currentDate = temp.getRecordData().getTimestamp();
-			
+
 			switch(temp.getSportType()){
 			case NOT_STARTED:
 				recordSeriesNotStarted.add(currentDate.getTime(), temp.getRecordData().getSpeed());
