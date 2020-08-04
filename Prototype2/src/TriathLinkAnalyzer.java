@@ -72,7 +72,7 @@ public class TriathLinkAnalyzer {
 	public ArrayList<Date> getTransitionTimestamps() {
 		return transitionTimestamps;
 	}
-
+ 
 	private TriathLinkSportType getCurrentSportType(TriathLinkSportType lastSport, RecordData currentRecord, int positionOfCurrentRecord){
 		TriathLinkSportType currentSport = lastSport;
 		

@@ -95,7 +95,10 @@ public class TestTriathLinkAnalyzer {
 
 				double abweichung = ((double)differenz / (double)elapsedTime) * 100;
 				System.out.println("Abweichung bei " + transitionNames[j] + " " + abweichung);
+				System.out.println(differenz / 1000);
 			}
+			
+			
 			
 		}
 	}
