@@ -1,0 +1,11 @@
+swimmingSpeedMin;0,1;
+swimmingSpeedMax;2,0;
+cyclingSpeedMin;5,0;
+cyclingSpeedMax;100,0;
+runningSpeedMin;2,5;
+runningSpeedMax;5,0;
+notMoving;0,1;
+futureSwimmingRecordsPercentage;0,01;
+futureCyclingRecordsPercentage;0,03;
+futureRunningRecordsPercentage;0,02;
+futureTransitioningRecordsPercentage;0,01;
