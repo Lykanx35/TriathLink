@@ -16,6 +16,7 @@ public class TriathLink {
 			//decoder = new TriathLinkFitDecoder("TestTriathlon.fit");
 			decoder = new TriathLinkFitDecoder("ObertrumTriathlon.fit");
 			//decoder = new TriathLinkFitDecoder("Ironman.fit");
+			//decoder = new TriathLinkFitDecoder("Trimotion.fit");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

@@ -16,7 +16,8 @@ public class TestTriathLinkAnalyzer {
 	private TriathLinkData obertrumTriathlonData = null;
 	private TriathLinkData testTriathlonTriathlonData = null;
 	private TriathLinkData ironmanData = null;
-
+	private TriathLinkData trimotionData = null;
+	
 	private TriathLinkAnalyzer obertrumTriathlonAnalyzer = null;
 
 
@@ -28,7 +29,7 @@ public class TestTriathLinkAnalyzer {
 			TriathLinkSportType.SECOND_TRANSITION.toString() + " to " + TriathLinkSportType.RUNNING.toString(),
 			TriathLinkSportType.RUNNING.toString() + " to " + TriathLinkSportType.FINISHED.toString()};
 
-	private String[] fitFileNames = {"Ironman", "ObertrumTriathlon", "TestTriathlon"};
+	private String[] fitFileNames = {"Ironman", "ObertrumTriathlon", "Trimotion"};
 	private ArrayList<Date> compareChangeTimestamps = new ArrayList<Date>();
 	private ArrayList<Date> analyzedChangeTimestamps = null;
 
@@ -95,11 +96,8 @@ public class TestTriathLinkAnalyzer {
 
 				double abweichung = ((double)differenz / (double)elapsedTime) * 100;
 				System.out.println("Abweichung bei " + transitionNames[j] + " " + abweichung);
-				System.out.println(differenz / 1000);
+				System.out.println(differenz / 1000 + " sec");
 			}
-			
-			
-			
 		}
 	}
 

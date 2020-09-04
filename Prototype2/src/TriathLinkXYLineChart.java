@@ -44,9 +44,9 @@ public class TriathLinkXYLineChart extends JFrame{
 
 		// Create chart
 		JFreeChart chart = ChartFactory.createTimeSeriesChart(
-				"XY Line Chart Example",
-				"Time",
-				"Speed",
+				"Triathlink",
+				"Time [s]",
+				"Speed [m/s]",
 				dataset,
 				true, true, false);
 
